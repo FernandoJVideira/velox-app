@@ -1,0 +1,40 @@
+BINARY_NAME=veloxApp
+
+build:
+	@go mod vendor
+	@echo "Building Velox..."
+	@go build -o tmp/${BINARY_NAME} .
+	@echo "Velox built!"
+
+run: build
+	@echo "Starting Velox..."
+	@./tmp/${BINARY_NAME} &
+	@echo "Velox started!"
+
+clean:
+	@echo "Cleaning..."
+	@go clean
+	@rm tmp/${BINARY_NAME}
+	@echo "Cleaned!"
+
+start_compose:
+	@echo "Starting Velox with Docker Compose..."
+	@docker-compose up -d
+
+stop_compose:
+	@echo "Stopping Velox with Docker Compose..."
+	@docker-compose down
+
+test:
+	@echo "Testing..."
+	@go test ./...
+	@echo "Done!"
+
+start: run
+
+stop:
+	@echo "Stopping Velox..."
+	@-pkill -SIGTERM -f "./tmp/${BINARY_NAME}"
+	@echo "Stopped Velox!"
+
+restart: stop start
