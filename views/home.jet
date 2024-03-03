@@ -1,14 +1,13 @@
 {{extends "./layouts/base.jet"}}
 
-{{block browserTitle()}}
-Welcome to Velox
-{{end}}
+{{block browserTitle()}}Welcome{{end}}
 
 {{block css()}}
 
 {{end}}
 
 {{block pageContent()}}
+
 <div class="col text-center">
     <div class="d-flex align-items-center justify-content-center mt-5">
         <div>
@@ -18,8 +17,11 @@ Welcome to Velox
             <small class="text-muted">Go build something awesome</small>
         </div>
     </div>
+
 </div>
+
 {{end}}
+
 
 {{block js()}}
 

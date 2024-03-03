@@ -5,10 +5,15 @@ import (
 	"net/http"
 
 	"github.com/FernandoJVideira/velox"
+	"github.com/FernandoJVideira/velox/filesystems"
 )
 
 func (h *Handlers) render(w http.ResponseWriter, r *http.Request, view string, variables, data interface{}) error {
 	return h.App.Render.Page(w, r, view, variables, data)
+}
+
+func (h *Handlers) uploadFile(r *http.Request, destination, field string, fs filesystems.FS) error {
+	return h.App.UploadFile(r, destination, field, fs)
 }
 
 func (h *Handlers) sessionPut(ctx context.Context, key string, value interface{}) {
